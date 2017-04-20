@@ -2,17 +2,17 @@
 
 namespace BinaryHeap
 {
-    class MaxBinaryHeap<T> : BinaryHeap<T>
+    class MinBinaryHeap<T> : BinaryHeap<T>
         where T : IComparable
     {
-        public MaxBinaryHeap() : base() { }
+        public MinBinaryHeap() : base() { }
 
         public override void Insert(T value)
         {
             base.Insert(value);
             int i = Size - 1;
             int parent = (i - 1) / 2;
-            while (i > 0 && Heap[parent].CompareTo(Heap[i]) < 0)
+            while (i > 0 && Heap[parent].CompareTo(Heap[i]) > 0)
             {
                 T temp = Heap[i];
                 Heap[i] = Heap[parent];
@@ -42,48 +42,49 @@ namespace BinaryHeap
         {
             int left;
             int right;
-            int max;
+            int min;
             int i = 0;
 
             for (;;)
             {
                 left = 2 * i + 1;
                 right = 2 * i + 2;
-                max = i;
+                min = i;
 
-                if (left < Size && right < Size && (Heap[left].CompareTo(Heap[max]) > 0
-                    || Heap[right].CompareTo(Heap[max]) > 0))
+                if (left < Size && right < Size && (Heap[left].CompareTo(Heap[min]) < 0
+                    || Heap[right].CompareTo(Heap[min]) < 0))
                 {
-                    if (Heap[left].CompareTo(Heap[right]) > 0)
+                    if (Heap[left].CompareTo(Heap[right]) < 0)
                     {
-                        max = left;
+                        min = left;
                     }
                     else
                     {
-                        max = right;
+                        min = right;
                     }
                 }
                 else
                 {
-                    if (left < Size && Heap[left].CompareTo(Heap[max]) > 0)
+                    if (left < Size && Heap[left].CompareTo(Heap[min]) < 0)
                     {
-                        max = left;
+                        min = left;
                     }
-                    if (right < Size && Heap[right].CompareTo(Heap[max]) > 0)
+                    if (right < Size && Heap[right].CompareTo(Heap[min]) < 0)
                     {
-                        max = right;
+                        min = right;
                     }
                 }
-                if (max == i)
+                if (min == i)
                 {
                     break;
                 }
 
                 T temp = Heap[i];
-                Heap[i] = Heap[max];
-                Heap[max] = temp;
-                i = max;
+                Heap[i] = Heap[min];
+                Heap[min] = temp;
+                i = min;
             }
         }
+
     }
 }
