@@ -24,10 +24,11 @@ namespace BinaryHeap
 
         public T Extract()
         {
-            T temp;
-            TryExtract(out temp);
+            T maxValue;
+            TryExtract(out maxValue);
             heapify();
-            return temp;
+            return maxValue;
+
             //if (Size > 0)
             //{
             //    T value = Heap[0];
@@ -42,21 +43,7 @@ namespace BinaryHeap
             //}
         }
 
-        public bool TryExtract(out T value)
-        {
-            if (Size > 0)
-            {
-                value = Heap[0];
-                Heap[0] = Heap[Size - 1];
-                Heap.RemoveAt(Size - 1);
-                return true;
-            }
-            else
-            {
-                value = default(T);
-                return false;
-            }
-        }
+
 
         void heapify()
         {
@@ -71,28 +58,13 @@ namespace BinaryHeap
                 right = 2 * i + 2;
                 max = i;
 
-                if (left < Size && right < Size && (Heap[left].CompareTo(Heap[max]) > 0
-                    || Heap[right].CompareTo(Heap[max]) > 0))
+                if (left < Size && Heap[left].CompareTo(Heap[max]) > 0)
                 {
-                    if (Heap[left].CompareTo(Heap[right]) > 0)
-                    {
-                        max = left;
-                    }
-                    else
-                    {
-                        max = right;
-                    }
+                    max = left;
                 }
-                else
+                if (right < Size && Heap[right].CompareTo(Heap[max]) > 0)
                 {
-                    if (left < Size && Heap[left].CompareTo(Heap[max]) > 0)
-                    {
-                        max = left;
-                    }
-                    if (right < Size && Heap[right].CompareTo(Heap[max]) > 0)
-                    {
-                        max = right;
-                    }
+                    max = right;
                 }
                 if (max == i)
                 {

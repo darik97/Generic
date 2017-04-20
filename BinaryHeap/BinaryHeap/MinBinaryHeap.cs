@@ -24,18 +24,10 @@ namespace BinaryHeap
 
         public T Extract()
         {
-            if (Size > 0)
-            {
-                T value = Heap[0];
-                Heap[0] = Heap[Size - 1];
-                Heap.RemoveAt(Size - 1);
-                heapify();
-                return value;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException();
-            }
+            T minValue;
+            TryExtract(out minValue);
+            heapify();
+            return minValue;
         }
 
         void heapify()
@@ -51,28 +43,13 @@ namespace BinaryHeap
                 right = 2 * i + 2;
                 min = i;
 
-                if (left < Size && right < Size && (Heap[left].CompareTo(Heap[min]) < 0
-                    || Heap[right].CompareTo(Heap[min]) < 0))
+                if (left < Size && Heap[left].CompareTo(Heap[min]) < 0)
                 {
-                    if (Heap[left].CompareTo(Heap[right]) < 0)
-                    {
-                        min = left;
-                    }
-                    else
-                    {
-                        min = right;
-                    }
+                    min = left;
                 }
-                else
+                if (right < Size && Heap[right].CompareTo(Heap[min]) < 0)
                 {
-                    if (left < Size && Heap[left].CompareTo(Heap[min]) < 0)
-                    {
-                        min = left;
-                    }
-                    if (right < Size && Heap[right].CompareTo(Heap[min]) < 0)
-                    {
-                        min = right;
-                    }
+                    min = right;
                 }
                 if (min == i)
                 {

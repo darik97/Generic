@@ -27,19 +27,20 @@ namespace BinaryHeap
             Heap.Add(value);
         }
 
-        //public virtual T Extract()
-        //{
-        //    if (Size > 0)
-        //    {
-        //        T value = Heap[0];
-        //        Heap[0] = Heap[Size - 1];
-        //        Heap.RemoveAt(Size - 1);
-        //        return value;
-        //    }
-        //    else
-        //    {
-        //        throw new IndexOutOfRangeException();
-        //    }
-        //}
+        public bool TryExtract(out T value)
+        {
+            if (Size > 0)
+            {
+                value = Heap[0];
+                Heap[0] = Heap[Size - 1];
+                Heap.RemoveAt(Size - 1);
+                return true;
+            }
+            else
+            {
+                value = default(T);
+                return false;
+            }
+        }
     }
 }
