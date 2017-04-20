@@ -14,15 +14,13 @@ namespace BinaryHeap
             int parent = (i - 1) / 2;
             while (i > 0 && Heap[parent].CompareTo(Heap[i]) > 0)
             {
-                T temp = Heap[i];
-                Heap[i] = Heap[parent];
-                Heap[parent] = temp;
+                SwapValues(parent, i);
                 i = parent;
                 parent = (i - 1) / 2;
             }
         }
 
-        public T Extract()
+        public override T Extract()
         {
             T minValue;
             TryExtract(out minValue);
@@ -55,10 +53,7 @@ namespace BinaryHeap
                 {
                     break;
                 }
-
-                T temp = Heap[i];
-                Heap[i] = Heap[min];
-                Heap[min] = temp;
+                SwapValues(min, i);
                 i = min;
             }
         }

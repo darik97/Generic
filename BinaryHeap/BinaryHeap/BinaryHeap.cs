@@ -27,6 +27,13 @@ namespace BinaryHeap
             Heap.Add(value);
         }
 
+        public virtual T Extract()
+        {
+            T value;
+            TryExtract(out value);
+            return value;
+        }
+
         public bool TryExtract(out T value)
         {
             if (Size > 0)
@@ -41,6 +48,13 @@ namespace BinaryHeap
                 value = default(T);
                 return false;
             }
+        }
+
+        public void SwapValues(int first, int second)
+        {
+            T temp = Heap[second];
+            Heap[second] = Heap[first];
+            Heap[first] = temp;
         }
     }
 }
