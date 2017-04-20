@@ -24,17 +24,37 @@ namespace BinaryHeap
 
         public T Extract()
         {
+            T temp;
+            TryExtract(out temp);
+            heapify();
+            return temp;
+            //if (Size > 0)
+            //{
+            //    T value = Heap[0];
+            //    Heap[0] = Heap[Size - 1];
+            //    Heap.RemoveAt(Size - 1);
+            //    heapify();
+            //    return value;
+            //}
+            //else
+            //{
+            //    throw new IndexOutOfRangeException();
+            //}
+        }
+
+        public bool TryExtract(out T value)
+        {
             if (Size > 0)
             {
-                T value = Heap[0];
+                value = Heap[0];
                 Heap[0] = Heap[Size - 1];
                 Heap.RemoveAt(Size - 1);
-                heapify();
-                return value;
+                return true;
             }
             else
             {
-                throw new IndexOutOfRangeException();
+                value = default(T);
+                return false;
             }
         }
 
