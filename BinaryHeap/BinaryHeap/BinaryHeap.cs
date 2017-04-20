@@ -30,11 +30,11 @@ namespace BinaryHeap
         public virtual T Extract()
         {
             T value;
-            TryExtract(out value);
+            tryExtract(out value);
             return value;
         }
 
-        public bool TryExtract(out T value)
+        protected bool tryExtract(out T value)
         {
             if (Size > 0)
             {
@@ -50,7 +50,7 @@ namespace BinaryHeap
             }
         }
 
-        public void SwapValues(int first, int second)
+        protected void swapValues(int first, int second)
         {
             T temp = Heap[second];
             Heap[second] = Heap[first];

@@ -14,7 +14,7 @@ namespace BinaryHeap
             int parent = (i - 1) / 2;
             while (i > 0 && Heap[parent].CompareTo(Heap[i]) < 0)
             {
-                SwapValues(parent, i);
+                swapValues(parent, i);
                 i = parent;
                 parent = (i - 1) / 2;
             }
@@ -23,7 +23,7 @@ namespace BinaryHeap
         public override T Extract()
         {
             T maxValue;
-            TryExtract(out maxValue);
+            tryExtract(out maxValue);
             heapify();
             return maxValue;
         }
@@ -53,7 +53,7 @@ namespace BinaryHeap
                 {
                     break;
                 }
-                SwapValues(max, i);
+                swapValues(max, i);
                 i = max;
             }
         }
