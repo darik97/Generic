@@ -5,7 +5,7 @@ namespace BinaryHeap
     class MaxBinaryHeap<T> : BinaryHeap<T>
         where T : IComparable
     {
-        public MaxBinaryHeap() : base() { }               
+        public MaxBinaryHeap() : base() { }
 
         public override bool Compare(int first, int second)
         {

@@ -94,10 +94,7 @@ namespace BinaryHeap
             }
         }
 
-        public virtual bool Compare(int first, int second)
-        {
-            return false;
-        }
+        abstract public bool Compare(int first, int second);
 
         protected void swapValues(int first, int second)
         {
