@@ -17,7 +17,25 @@ namespace BinaryHeap
             maxHeap.Insert(3);
             while (maxHeap.Size > 0)
             {
-                Console.WriteLine(maxHeap.Extract());
+                int temp;
+                maxHeap.TryExtract(out temp);
+                Console.WriteLine(temp);
+            }
+            Console.WriteLine();
+            MinBinaryHeap<int> minHeap = new MinBinaryHeap<int>();
+            minHeap.Insert(0);
+            minHeap.Insert(1);
+            minHeap.Insert(22);
+            minHeap.Insert(13);
+            minHeap.Insert(10);
+            minHeap.Insert(31);
+            minHeap.Insert(15);
+            minHeap.Insert(3);
+            while (minHeap.Size > 0)
+            {
+                int temp;
+                minHeap.TryExtract(out temp);
+                Console.WriteLine(temp);
             }
         }
     }

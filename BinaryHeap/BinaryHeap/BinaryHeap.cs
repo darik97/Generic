@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BinaryHeap
 {
-    class BinaryHeap<T>
+    abstract class BinaryHeap<T>
         where T : IComparable
     {
         public readonly List<T> Heap;
@@ -22,25 +22,30 @@ namespace BinaryHeap
             Heap = new List<T>();
         }
 
-        public virtual void Insert(T value)
+        public void Insert(T value)
         {
             Heap.Add(value);
+            int i = Size - 1;
+            int parent = (i - 1) / 2;
+            while (i > 0 && Compare(i, parent))
+            {
+                swapValues(parent, i);
+                i = parent;
+                parent = (i - 1) / 2;
+            }
         }
 
-        public virtual T Extract()
-        {
-            T value;
-            tryExtract(out value);
-            return value;
-        }
-
-        protected bool tryExtract(out T value)
+        public bool TryExtract(out T value)
         {
             if (Size > 0)
             {
+                value = extract();
+                /*
                 value = Heap[0];
                 Heap[0] = Heap[Size - 1];
                 Heap.RemoveAt(Size - 1);
+                Heapify();
+                 */
                 return true;
             }
             else
@@ -48,6 +53,50 @@ namespace BinaryHeap
                 value = default(T);
                 return false;
             }
+        }
+
+        private T extract()
+        {
+            T value = Heap[0];
+            Heap[0] = Heap[Size - 1];
+            Heap.RemoveAt(Size - 1);
+            Heapify();
+            return value;
+        }
+
+        public void Heapify()
+        {
+            int left;
+            int right;
+            int max;
+            int i = 0;
+
+            for (;;)
+            {
+                left = 2 * i + 1;
+                right = 2 * i + 2;
+                max = i;
+
+                if (left < Size && Compare(left, max))
+                {
+                    max = left;
+                }
+                if (right < Size && Compare(right, max))
+                {
+                    max = right;
+                }
+                if (max == i)
+                {
+                    break;
+                }
+                swapValues(max, i);
+                i = max;
+            }
+        }
+
+        public virtual bool Compare(int first, int second)
+        {
+            return false;
         }
 
         protected void swapValues(int first, int second)
