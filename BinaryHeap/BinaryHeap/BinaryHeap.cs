@@ -55,7 +55,7 @@ namespace BinaryHeap
             }
         }
 
-        private T extract()
+        T extract()
         {
             T value = Heap[0];
             Heap[0] = Heap[Size - 1];
@@ -96,7 +96,7 @@ namespace BinaryHeap
 
         abstract public bool Compare(int first, int second);
 
-        protected void swapValues(int first, int second)
+        void swapValues(int first, int second)
         {
             T temp = Heap[second];
             Heap[second] = Heap[first];
