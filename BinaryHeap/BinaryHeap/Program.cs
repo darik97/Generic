@@ -6,22 +6,6 @@ namespace BinaryHeap
     {
         static void Main(string[] args)
         {
-            MaxBinaryHeap<int> maxHeap = new MaxBinaryHeap<int>();
-            maxHeap.Insert(0);
-            maxHeap.Insert(1);
-            maxHeap.Insert(22);
-            maxHeap.Insert(13);
-            maxHeap.Insert(10);
-            maxHeap.Insert(31);
-            maxHeap.Insert(15);
-            maxHeap.Insert(3);
-            while (maxHeap.Size > 0)
-            {
-                int temp;
-                maxHeap.TryExtract(out temp);
-                Console.WriteLine(temp);
-            }
-            Console.WriteLine();
             MinBinaryHeap<int> minHeap = new MinBinaryHeap<int>();
             minHeap.Insert(0);
             minHeap.Insert(1);
@@ -33,9 +17,36 @@ namespace BinaryHeap
             minHeap.Insert(3);
             while (minHeap.Size > 0)
             {
-                int temp;
-                minHeap.TryExtract(out temp);
-                Console.WriteLine(temp);
+                int value;
+                if (minHeap.TryExtract(out value))
+                {
+                    Console.WriteLine(value);
+                }
+                else
+                {
+                    Console.WriteLine("Куча пуста");
+                }
+            }
+            Console.WriteLine();
+            MaxBinaryHeap<string> sHeap = new MaxBinaryHeap<string>();
+            sHeap.Insert("yellow");
+            sHeap.Insert("red");
+            sHeap.Insert("orange");
+            sHeap.Insert("green");
+            sHeap.Insert("blue");
+            sHeap.Insert("indigo");
+            sHeap.Insert("violet");
+            while (sHeap.Size > 0)
+            {
+                string value;
+                if (sHeap.TryExtract(out value))
+                {
+                    Console.WriteLine(value);
+                }
+                else
+                {
+                    Console.WriteLine("Куча пуста");
+                }
             }
         }
     }
