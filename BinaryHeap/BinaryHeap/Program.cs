@@ -15,6 +15,11 @@ namespace BinaryHeap
             minHeap.Insert(31);
             minHeap.Insert(15);
             minHeap.Insert(3);
+            for (int i = 0; i < minHeap.Size; i++)
+            {
+                Console.Write(minHeap.Heap[i] + " ");
+            }
+            Console.WriteLine();
             while (minHeap.Size > 0)
             {
                 int value;
