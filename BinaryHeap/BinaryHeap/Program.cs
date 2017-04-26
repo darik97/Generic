@@ -22,17 +22,18 @@ namespace BinaryHeap
             Console.WriteLine();
             while (minHeap.Size > 0)
             {
-                int value;
-                if (minHeap.TryExtract(out value))
-                {
-                    Console.WriteLine(value);
-                }
-                else
-                {
-                    Console.WriteLine("Куча пуста");
-                }
+                Console.WriteLine(minHeap.Extract());
             }
-            Console.WriteLine();
+            int minValue;
+            if (minHeap.TryExtract(out minValue))
+            {
+                Console.WriteLine(minValue + "\n");
+            }
+            else
+            {
+                Console.WriteLine("Куча пуста \n");
+            }
+
             MaxBinaryHeap<string> sHeap = new MaxBinaryHeap<string>();
             sHeap.Insert("yellow");
             sHeap.Insert("red");
@@ -41,17 +42,23 @@ namespace BinaryHeap
             sHeap.Insert("blue");
             sHeap.Insert("indigo");
             sHeap.Insert("violet");
+            for (int i = 0; i < sHeap.Size; i++)
+            {
+                Console.Write(sHeap.Heap[i] + " ");
+            }
+            Console.WriteLine();
             while (sHeap.Size > 0)
             {
-                string value;
-                if (sHeap.TryExtract(out value))
-                {
-                    Console.WriteLine(value);
-                }
-                else
-                {
-                    Console.WriteLine("Куча пуста");
-                }
+                Console.WriteLine(sHeap.Extract());
+            }
+            string maxValue;
+            if (sHeap.TryExtract(out maxValue))
+            {
+                Console.WriteLine(maxValue + "\n");
+            }
+            else
+            {
+                Console.WriteLine("Куча пуста \n");
             }
         }
     }
